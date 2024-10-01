@@ -4,7 +4,7 @@ from unittest.mock import patch
 from audiobook_generator.tts_providers.azure_tts_provider import AzureTTSProvider
 from audiobook_generator.tts_providers.base_tts_provider import get_tts_provider
 from audiobook_generator.tts_providers.openai_tts_provider import OpenAITTSProvider
-from tests.test_utils import get_azure_config, get_openai_config
+from audiobook_generator.core.config import get_azure_config, get_openai_config
 
 
 class TestBaseTtsProvider(unittest.TestCase):

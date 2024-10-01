@@ -25,7 +25,7 @@ def split_text(text: str, max_chars: int, language: str) -> List[str]:
         words = text.split()
 
         for word in words:
-            if len(current_chunk) + len(word) + 1 <= max_chars:
+            if len(current_chunk) + len(word) + (1 if current_chunk else 0) <= max_chars:
                 current_chunk += (" " if current_chunk else "") + word
             else:
                 chunks.append(current_chunk)
@@ -34,13 +34,10 @@ def split_text(text: str, max_chars: int, language: str) -> List[str]:
         if current_chunk:
             chunks.append(current_chunk)
 
+    # Add logger call here to log the chunks
     logger.info(f"Split text into {len(chunks)} chunks")
     for i, chunk in enumerate(chunks, 1):
-        first_100 = chunk[:100]
-        last_100 = chunk[-100:] if len(chunk) > 100 else ""
-        logger.info(
-            f"Chunk {i}: Length={len(chunk)}, Start={first_100}..., End={last_100}"
-        )
+        logger.info(f"Chunk {i}: {chunk[:50]}...")  # Log first 50 characters of each chunk
 
     return chunks
 
@@ -60,7 +57,9 @@ def set_audio_tags(output_file, audio_tags):
         tags.save(output_file)
     except Exception as e:
         logger.error(f"Error while setting audio tags: {e}, {output_file}")
-        raise e  # TODO: use this raise to catch unknown errors for now
+        raise e
+
+
 
 
 def is_special_char(char: str) -> bool:

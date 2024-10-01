@@ -3,7 +3,7 @@ from unittest.mock import MagicMock
 
 from audiobook_generator.book_parsers.base_book_parser import get_book_parser
 from audiobook_generator.book_parsers.epub_book_parser import EpubBookParser
-from tests.test_utils import get_azure_config
+from audiobook_generator.core.config import get_azure_config, get_openai_config
 
 
 class TestGetBookParser(unittest.TestCase):
