@@ -1,0 +1,1 @@
+html  role="doc-toc" is an ARIA role for a table of contents, added for a11y  Table of Contents The Basics Previewing and publishing Basic formatting Generate a preview version of your book Either read a tutorial, or just go for it! Thanks for being a Leanpub author! 
