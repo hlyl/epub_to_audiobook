@@ -33,6 +33,7 @@ def get_openai_config():
         newline_mode='double',
         chapter_start=1,
         chapter_end=-1,
+        title_mode="auto",
         remove_endnotes=False,
         tts='openai',
         language='en-US',
