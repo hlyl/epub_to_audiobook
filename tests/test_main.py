@@ -124,3 +124,30 @@ def test_main(mock_setup_logging, mock_parse_arguments, mock_audiobook_generator
     mock_setup_logging.assert_called_once_with(mock_config.log)
     mock_audiobook_generator.assert_called_once_with(mock_config)
     mock_audiobook_generator.return_value.run.assert_called_once()
+
+# Additional tests for specific command-line argument combinations
+
+@mock.patch("sys.argv", ['program', 'input_file.epub', 'output_folder', '--tts', 'azure'])
+def test_handle_azure_args():
+    config = parse_arguments()
+    assert config.tts == 'azure'
+
+@mock.patch("sys.argv", ['program', 'input_file.epub', 'output_folder', '--tts', 'openai'])
+def test_handle_openai_args():
+    config = parse_arguments()
+    assert config.tts == 'openai'
+
+@mock.patch("sys.argv", ['program', 'input_file.epub', 'output_folder', '--tts', 'unsupported_tts'])
+def test_handle_unsupported_tts():
+    with pytest.raises(SystemExit):  # argparse exits with SystemExit on error
+        parse_arguments()
+
+@mock.patch("sys.argv", ['program', 'output_folder', '--tts', 'azure'])
+def test_handle_missing_input_file():
+    with pytest.raises(SystemExit):  # argparse exits with SystemExit on missing arguments
+        parse_arguments()
+
+@mock.patch("sys.argv", ['program', 'input_file.epub', 'output_folder', '--log', 'INVALID_LOG_LEVEL'])
+def test_handle_invalid_log_level():
+    with pytest.raises(SystemExit):  # argparse exits with SystemExit on invalid arguments
+        parse_arguments()
