@@ -5,7 +5,6 @@ from audiobook_generator.book_parsers import ast
 
 EPUB = "epub"
 
-
 class BaseBookParser:  # Base interface for books parsers
     # Base Book Parser interface
     def __init__(self, config: GeneralConfig):
