@@ -8,6 +8,8 @@ This project provides a command-line tool to convert EPUB ebooks into audiobooks
 
 ## Recent Updates
 
+- 2025-08-30: Converted dependendiec from requirements.txt to pyproject.toml, and testing the usage of UV. My first book conversion using cli and Edge_TTS worked well.
+
 - 2025-05-23: Added a web interface (WebUI) to the project.
 
 ## Audio Sample
